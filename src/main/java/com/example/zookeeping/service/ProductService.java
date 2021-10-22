@@ -40,8 +40,14 @@ public class ProductService {
         productRepository.deleteAll();
     }
 
-    public void deleteSomeProducts(Integer... productIds) {
-        List<Product> products = productRepository.findAllById(Arrays.asList(productIds));
+    public void deleteSomeProducts(List<Integer> productIds) {
+        List<Product> products = productRepository.findAllById(productIds);
         productRepository.deleteAll(products);
+    }
+
+    public void updateProduct(Integer productId, Integer newAmount) {
+        Product updateProduct = productRepository.getById(productId);
+        updateProduct.setAmount(newAmount);
+        productRepository.save(updateProduct);
     }
 }
