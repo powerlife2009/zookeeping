@@ -38,6 +38,12 @@ public class AnimalController {
         return animalService.getAllAnimals();
     }
 
+    @GetMapping("/all/details")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Map<String, Integer>> getFullInfo() {
+        return rationService.getFullDetailsAnimals();
+    }
+
     @GetMapping("/{id}/ration")
     public Map<String, Integer> getRationOfAnimal(@PathVariable("id") Integer animalId) {
         return rationService.getRationOfAnimal(animalId);
