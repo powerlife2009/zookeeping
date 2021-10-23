@@ -1,22 +1,24 @@
 package com.example.zookeeping.service;
 
 import com.example.zookeeping.model.Ration;
+import com.example.zookeeping.repository.ProductRepository;
 import com.example.zookeeping.repository.RationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toMap;
+
 @Service
+@AllArgsConstructor
 public class RationService {
 
     private final RationRepository rationRepository;
-
-    @Autowired
-    public RationService(RationRepository rationRepository) {
-        this.rationRepository = rationRepository;
-    }
+    private final ProductRepository productRepository;
 
     public void addRation(Integer animalId, Integer productId, Integer dailyRate) {
         List<Integer> productList = rationRepository.findAllByAnimalId(animalId).stream()
@@ -28,4 +30,18 @@ public class RationService {
 
         rationRepository.save(Ration.of(animalId, productId, dailyRate));
     }
+
+    public Map<String, Integer> getRationOfAnimal(Integer animalId) {
+        List<Ration> rationList = rationRepository.findAllByAnimalId(animalId);
+        if (rationList.isEmpty()) {
+            return new HashMap<>();
+        }
+
+        return rationList.stream()
+                .collect(toMap(ration ->
+                                productRepository.findById(ration.getProduct()).get().getName(),
+                        Ration::getDailyRate
+                ));
+    }
+
 }

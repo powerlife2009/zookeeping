@@ -3,10 +3,9 @@ package com.example.zookeeping.service;
 import com.example.zookeeping.model.Animal;
 import com.example.zookeeping.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -18,7 +17,11 @@ public class AnimalService {
         return animalRepository.findById(animalId).orElseThrow(() -> new IllegalArgumentException("Животное не найдено"));
     }
 
-    public Stream<Animal> getAllAnimals() {
-        return animalRepository.findAll().stream();
+    public List<Animal> getAllAnimals() {
+        return animalRepository.findAll();
+    }
+
+    public Integer createAnimal(Animal animal) {
+        return animalRepository.save(animal).getId();
     }
 }
