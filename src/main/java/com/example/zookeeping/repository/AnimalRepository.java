@@ -6,7 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AnimalRepository extends JpaRepository<Animal, Integer> {
-
-    @Override
-    void deleteById(Integer animalId);
 }

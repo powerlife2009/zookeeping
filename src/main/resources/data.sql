@@ -1,26 +1,13 @@
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Морковь', 20, 'овощ', 'шт');
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Мясо', 5, 'мясо', 'кг');
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Капуста', 30, 'овощ', 'шт');
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Яблоко', 0, 'фрукт', 'шт');
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Банан', 20, 'фрукт', 'шт');
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Зерно', 200, 'зерно', 'кг');
-INSERT INTO product (name, amount, product_type, product_unit)
-VALUES ('Вода', 200, 'жидкость', 'л');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (1, 'Морковь', 'VEGETABLE', 20, 'ITEM');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (2, 'Мясо', 'MEAT', 5, 'KG');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (3, 'Капуста', 'VEGETABLE', 30, 'ITEM');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (4, 'Яблоко', 'FRUIT', 0, 'ITEM');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (5, 'Банан', 'FRUIT', 20, 'ITEM');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (6, 'Зерно', 'GRAIN', 200, 'KG');
+INSERT INTO product (id, name, product_type, amount, product_unit) VALUES (7, 'Вода', 'LIQUID', 200, 'LITER');
 
-
-INSERT INTO animal (name, animal_type, predator)
-VALUES ('Обезьяна', 'млекопитающее', false);
-INSERT INTO animal (name, animal_type, predator)
-VALUES ('Заяц', 'млекопитающее', false);
-INSERT INTO animal (name, animal_type, predator)
-VALUES ('Орёл', 'птица', true);
-INSERT INTO animal (name, animal_type, predator)
-VALUES ('Тигр', 'млекопитающее', true);
-INSERT INTO animal (name, animal_type, predator)
-VALUES ('Лошадь', 'млекопитающее', false);
+INSERT INTO animal (id, name, animal_type, predator) VALUES (1, 'Обезьяна', 'MAMMAL', false);
+INSERT INTO animal (id, name, animal_type, predator) VALUES (2, 'Заяц', 'MAMMAL', false);
+INSERT INTO animal (id, name, animal_type, predator) VALUES (3, 'Орёл', 'BIRD', true);
+INSERT INTO animal (id, name, animal_type, predator) VALUES (4, 'Тигр', 'MAMMAL', true);
+INSERT INTO animal (id, name, animal_type, predator) VALUES (5, 'Лошадь', 'MAMMAL', false);

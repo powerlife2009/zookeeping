@@ -17,17 +17,16 @@ import javax.persistence.Id;
 @Setter
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String name;
 
-    private int amount;
-
-    @Enumerated(EnumType.STRING)
-    private ProductUnit productUnit;
+    private Integer amount;
 
     @Enumerated(EnumType.STRING)
     private ProductType productType;
 
+    @Enumerated(EnumType.STRING)
+    private ProductUnit productUnit;
 }
