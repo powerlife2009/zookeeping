@@ -25,4 +25,12 @@ public class AnimalService {
     public Integer createAnimal(Animal animal) {
         return animalRepository.save(animal).getId();
     }
+
+    public void deleteAnimal(Integer animalId) {
+        animalRepository.deleteById(animalId);
+    }
+
+    public void deleteAllAnimal() {
+        animalRepository.deleteAll();
+    }
 }

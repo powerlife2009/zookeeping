@@ -5,6 +5,7 @@ import com.example.zookeeping.service.AnimalService;
 import com.example.zookeeping.service.RationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,5 +62,17 @@ public class AnimalController {
                                    @RequestParam Integer productId,
                                    @RequestParam Integer dailyRate) {
         rationService.addRation(animalId, productId, dailyRate);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAnimal(@PathVariable("id") Integer animalId) {
+        animalService.deleteAnimal(animalId);
+    }
+
+    @DeleteMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAllAnimal() {
+        animalService.deleteAllAnimal();
     }
 }

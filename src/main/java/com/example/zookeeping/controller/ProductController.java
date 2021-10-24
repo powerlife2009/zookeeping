@@ -43,4 +43,10 @@ public class ProductController {
     public void deleteAll() {
         productService.deleteAllProducts();
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProduct(@PathVariable Integer productId) {
+        productService.deleteProduct(productId);
+    }
 }
