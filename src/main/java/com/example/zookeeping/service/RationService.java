@@ -6,8 +6,8 @@ import com.example.zookeeping.repository.ProductRepository;
 import com.example.zookeeping.repository.RationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -27,18 +27,15 @@ public class RationService {
         List<Integer> productList = rationRepository.findAllByAnimalId(animalId).stream()
                 .map(Ration::getProduct)
                 .collect(Collectors.toList());
-        if (productList.contains(productId)) {
-            throw new IllegalArgumentException("Данный продукт уже включён в рацион");
-        }
+        Assert.isTrue(!productList.contains(productId), "Данный продукт уже включён в рацион");
 
         rationRepository.save(Ration.of(animalId, productId, dailyRate));
     }
 
     public Map<String, Integer> getRationOfAnimal(Integer animalId) {
         List<Ration> rationList = rationRepository.findAllByAnimalId(animalId);
-        if (rationList.isEmpty()) {
-            return new HashMap<>();
-        }
+        Assert.isTrue(!rationList.isEmpty(), "Рацион не назначен животному");
+
         return rationList.stream()
                 .collect(toMap(productName(), Ration::getDailyRate));
     }
