@@ -7,10 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class RationRepositoryStub implements RationRepository {
+
+    private final List<Ration> rations = new ArrayList<>();
+
     @Override
     public List<Ration> findAllByAnimalId(Integer animalId) {
         throw new UnsupportedOperationException("Method is not implemented");

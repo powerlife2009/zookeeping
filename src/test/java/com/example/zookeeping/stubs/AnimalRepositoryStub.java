@@ -7,13 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 public class AnimalRepositoryStub implements AnimalRepository {
+
+    private final List<Animal> animals = new ArrayList<>();
+
     @Override
     public List<Animal> findAll() {
-        throw new UnsupportedOperationException("Method is not implemented");
+        return animals;
     }
 
     @Override
@@ -38,7 +43,7 @@ public class AnimalRepositoryStub implements AnimalRepository {
 
     @Override
     public void deleteById(Integer integer) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        animals.removeIf(animal -> animal.getId().equals(integer));
     }
 
     @Override
@@ -58,22 +63,26 @@ public class AnimalRepositoryStub implements AnimalRepository {
 
     @Override
     public void deleteAll() {
-        throw new UnsupportedOperationException("Method is not implemented");
+        animals.clear();
     }
 
     @Override
     public <S extends Animal> S save(S entity) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        animals.add(entity);
+        return entity;
     }
 
     @Override
     public <S extends Animal> List<S> saveAll(Iterable<S> entities) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        animals.addAll((Collection<Animal>) entities);
+        return (List<S>) animals;
     }
 
     @Override
     public Optional<Animal> findById(Integer integer) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        return animals.stream()
+                .filter(animal -> animal.getId().equals(integer))
+                .findFirst();
     }
 
     @Override
@@ -149,5 +158,9 @@ public class AnimalRepositoryStub implements AnimalRepository {
     @Override
     public <S extends Animal> boolean exists(Example<S> example) {
         throw new UnsupportedOperationException("Method is not implemented");
+    }
+
+    public void clear() {
+        animals.clear();
     }
 }

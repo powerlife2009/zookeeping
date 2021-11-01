@@ -65,14 +65,14 @@ public class AnimalController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnimal(@PathVariable("id") Integer animalId) {
         animalService.deleteAnimal(animalId);
     }
 
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAllAnimal() {
-        animalService.deleteAllAnimal();
+        animalService.deleteAllAnimals();
     }
 }

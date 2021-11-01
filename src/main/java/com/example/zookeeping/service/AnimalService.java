@@ -29,7 +29,7 @@ public class AnimalService {
         animalRepository.deleteById(animalId);
     }
 
-    public void deleteAllAnimal() {
+    public void deleteAllAnimals() {
         animalRepository.deleteAll();
     }
 }

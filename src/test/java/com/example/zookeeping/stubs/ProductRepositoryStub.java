@@ -7,10 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ProductRepositoryStub implements ProductRepository {
+
+    private final List<Product> products = new ArrayList<>();
+
     @Override
     public List<Product> findAll() {
         throw new UnsupportedOperationException("Method is not implemented");
