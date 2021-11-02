@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class ProductRepositoryStub implements ProductRepository {
 
     @Override
     public List<Product> findAll() {
-        throw new UnsupportedOperationException("Method is not implemented");
+        return products;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ProductRepositoryStub implements ProductRepository {
 
     @Override
     public void deleteById(Integer integer) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        products.removeIf(product -> product.getId().equals(integer));
     }
 
     @Override
@@ -62,22 +63,26 @@ public class ProductRepositoryStub implements ProductRepository {
 
     @Override
     public void deleteAll() {
-        throw new UnsupportedOperationException("Method is not implemented");
+        products.clear();
     }
 
     @Override
     public <S extends Product> S save(S entity) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        products.add(entity);
+        return entity;
     }
 
     @Override
     public <S extends Product> List<S> saveAll(Iterable<S> entities) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        products.addAll((Collection<? extends Product>) entities);
+        return (List<S>) products;
     }
 
     @Override
     public Optional<Product> findById(Integer integer) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        return products.stream()
+                .filter(product -> product.getId().equals(integer))
+                .findFirst();
     }
 
     @Override
@@ -153,5 +158,9 @@ public class ProductRepositoryStub implements ProductRepository {
     @Override
     public <S extends Product> boolean exists(Example<S> example) {
         throw new UnsupportedOperationException("Method is not implemented");
+    }
+
+    public void clear() {
+        products.clear();
     }
 }

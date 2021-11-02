@@ -50,7 +50,7 @@ public class AnimalController {
         return rationService.getRationOfAnimal(animalId);
     }
 
-    @PostMapping
+    @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public Integer createAnimal(@RequestBody Animal animal) {
         return animalService.createAnimal(animal);

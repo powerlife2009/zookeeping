@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AnimalServiceTest {
 
@@ -39,7 +40,7 @@ public class AnimalServiceTest {
 
     @Test
     void should_return_error_if_animal_is_not_present() {
-        Assertions.assertThatThrownBy(() -> animalService.getAnimal(CAT_ID))
+        assertThatThrownBy(() -> animalService.getAnimal(CAT_ID))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Животное не найдено");
     }
