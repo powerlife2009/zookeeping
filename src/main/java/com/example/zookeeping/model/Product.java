@@ -29,4 +29,11 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     private ProductUnit productUnit;
+
+    public static Product of(Integer productId, String productName) {
+        Product product = new Product();
+        product.setId(productId);
+        product.setName(productName);
+        return product;
+    }
 }

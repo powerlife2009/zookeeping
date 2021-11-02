@@ -26,4 +26,11 @@ public class Animal {
     private AnimalType animalType;
 
     private boolean predator;
+
+    public static Animal of(Integer animalId, String animalName) {
+        Animal animal = new Animal();
+        animal.setId(animalId);
+        animal.setName(animalName);
+        return animal;
+    }
 }

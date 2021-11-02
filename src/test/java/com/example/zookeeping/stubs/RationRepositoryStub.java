@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class RationRepositoryStub implements RationRepository {
 
@@ -17,7 +18,9 @@ public class RationRepositoryStub implements RationRepository {
 
     @Override
     public List<Ration> findAllByAnimalId(Integer animalId) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        return rations.stream()
+                .filter(ration -> ration.getAnimal().equals(animalId))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -72,7 +75,8 @@ public class RationRepositoryStub implements RationRepository {
 
     @Override
     public <S extends Ration> S save(S entity) {
-        throw new UnsupportedOperationException("Method is not implemented");
+        rations.add(entity);
+        return entity;
     }
 
     @Override
@@ -158,5 +162,9 @@ public class RationRepositoryStub implements RationRepository {
     @Override
     public <S extends Ration> boolean exists(Example<S> example) {
         throw new UnsupportedOperationException("Method is not implemented");
+    }
+
+    public void clear() {
+        rations.clear();
     }
 }
