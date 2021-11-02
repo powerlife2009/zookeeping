@@ -33,6 +33,8 @@ Zookeeping - система учёта ресурсов зоопарка.
 - SpringBoot
 - SpringDataJPA
 - PostgreSQL
+- JUnit
+- AssertJ
 - RestAPI
 
 
