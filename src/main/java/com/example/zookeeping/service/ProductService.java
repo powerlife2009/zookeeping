@@ -40,7 +40,7 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    public Integer createProduct(Product product) {
-        return productRepository.save(product).getId();
+    public Product createProduct(Product product) {
+        return productRepository.saveAndFlush(product);
     }
 }

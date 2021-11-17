@@ -21,8 +21,8 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
-    public Integer createAnimal(Animal animal) {
-        return animalRepository.save(animal).getId();
+    public Animal createAnimal(Animal animal) {
+        return animalRepository.saveAndFlush(animal);
     }
 
     public void deleteAnimal(Integer animalId) {
